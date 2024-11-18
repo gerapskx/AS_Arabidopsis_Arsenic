@@ -98,11 +98,6 @@ combined_se <- cbind(se1, se2, se3)
 
 combined_se
 
-BiocManager::install("DEXSeq", force=TRUE)
-
-library(DEXSeq)
-
-
 combined_se@assays@data@listData
 
 colData(combined_se)$condition = factor(c("Arsenic",
