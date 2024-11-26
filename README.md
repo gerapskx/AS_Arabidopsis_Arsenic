@@ -231,9 +231,9 @@ colData(combined_se)$genotype = factor(c("WT",
 ))
 
 design = ~ genotype + condition + genotype:condition + exon
-
-dxd_COMPLEX <- DEXSeqDataSetFromSE(combined_se, design = ~genotype + condition + genotype:condition + exon)
-
+remove(dxd_COMPLEX)
+dxd_COMPLEX <- DEXSeqDataSetFromSE(combined_se, design = ~sample + exon + genotype:condition )
+sample + exon + condition:exon
 dxd_COMPLEX
 
 colData(dxd_COMPLEX)
@@ -255,6 +255,7 @@ dxd_COMPLEX = estimateSizeFactors(dxd_COMPLEX)
 dxd_COMPLEX = estimateDispersions( dxd_COMPLEX )
 
 plotDispEsts(dxd_COMPLEX)
+
 
 dxd_COMPLEX = testForDEU(dxd_COMPLEX)
 
@@ -509,3 +510,29 @@ dxd_Col1_df_filtered$gene_name <- mapIds(org.At.tair.db,
                                             multiVals = "first")
 
 write_xlsx(dxd_Col1_df_filtered, path = "DEXSeq_resultsAs0.05_Col.xlsx")
+
+
+########Plotting
+
+
+#arsenic
+plotDEXSeq(dxr1, "AT1G15520", 
+           cex.axis=1, cex=1, lwd=3, FDR=0.1, 
+           legend = TRUE, expression = TRUE, splicing = TRUE)
+#colombia
+plotDEXSeq(dxd_Col1, "AT1G15520", 
+           cex.axis=1, cex=1, lwd=3, FDR=0.1, 
+           legend = TRUE,names = TRUE, expression = TRUE, splicing = TRUE)
+#KO
+plotDEXSeq(dxd_fbox1, "AT1G15520",
+           cex.axis=1, cex=1, lwd=3, FDR=0.1, 
+           legend = TRUE, names = TRUE, expression = TRUE, splicing = TRUE)
+#OE
+plotDEXSeq(dxd_fboxOE1, "AT1G15520", 
+           cex.axis=1, cex=1, lwd=3, FDR=0.1,
+           legend = TRUE, names = TRUE, expression = TRUE, splicing = TRUE)
+
+
+
+```
+
