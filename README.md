@@ -1,5 +1,5 @@
 
-# Alternative splicing analysis of Arabidopsis under Arsenic stress
+# Alternative splicing analysis
 
 ```
 
