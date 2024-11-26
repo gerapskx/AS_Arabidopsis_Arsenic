@@ -3,7 +3,7 @@
 
 ```
 
-library(GenomicFeatures)  # for the exonicParts() function
+library(GenomicFeatures)
 library(Rsamtools)
 library(txdbmaker)
 library(GenomicAlignments)
